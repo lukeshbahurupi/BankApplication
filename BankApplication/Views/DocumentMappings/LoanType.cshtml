@@ -1,0 +1,63 @@
+﻿@model IEnumerable<BankApplication.Models.LoanType>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LoanDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoanInterestRatePerAnnum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinimumLoanAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaximumLoanAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinimumAgeRequired)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaximumAgeRequired)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoanDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoanInterestRatePerAnnum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MinimumLoanAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaximumLoanAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MinimumAgeRequired)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaximumAgeRequired)
+        </td>
+        <td>
+            @*   @Html.ActionLink("Edit", "Edit", new { id=item.LoanCode }) |
+        @Html.ActionLink("Details", "Details", new { id=item.LoanCode }) |*@
+            @Html.ActionLink("Documents", "Index", new { id = item.LoanCode })
+        </td>
+    </tr>
+}
+
+</table>

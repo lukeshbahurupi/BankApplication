@@ -1,0 +1,409 @@
+﻿@model BankApplication.Models.ApplicationForm
+@{
+    var data = ViewBag.data;
+    //Model.CustemerName = data.UserName;
+
+}
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Form Wizards</h3>
+        </div>
+
+        @*<div class="title_right">
+                <div class="col-md-5 col-sm-5  form-group row pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-secondary" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>*@
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="row">
+
+        <div class="col-md-12 col-sm-12 ">
+            <div class="x_panel">
+
+                <div class="x_content">
+                    @using (Html.BeginForm("Create", "ApplicationForm", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <form class="form-horizontal form-label-left">
+                            @Html.AntiForgeryToken()
+                            <h2>Loan Application Form</h2>
+                            <!-- Tabs -->
+                            <div id="wizard_verticle" class="form_wizard wizard_verticle">
+                                <ul class="list-unstyled wizard_steps">
+                                    <li>
+                                        <a href="#step-11">
+                                            <span class="step_no">1</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-22">
+                                            <span class="step_no">2</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-33">
+                                            <span class="step_no">3</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-44">
+                                            <span class="step_no">4</span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div id="step-11">
+                                    <h2 class="StepTitle">Step 1 </h2>
+
+
+
+                                    <span class="section">Personal Info</span>
+
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">
+                                            Name
+                                        </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @*<input type="text" id="first-name2" required="required" class="form-control">*@
+                                            @*@Html.EditorFor(model => model.CustemerName, new { htmlAttributes = new { @class = "form-control", id = "first-name", required = "required",  style = "display:none" } })*@
+                                            @*@Html.ValidationMessageFor(model => model.CustemerName, "", new { @class = "text-danger" })*@
+                                            <p class="form-control">@data.UserName</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">Gender<span class="required">*</span></label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div id="gender2" class="btn-group" data-toggle="buttons">
+                                                <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-secondary">
+                                                    @Html.RadioButtonFor(model => model.Gender, "male", new { @class = "join-btn form-check-input", autocomplete = "off" })   &nbsp; Male &nbsp;
+                                                </label>
+                                                <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-secondary">
+                                                    @Html.RadioButtonFor(model => model.Gender, "female", new { @class = "join-btn form-check-input", autocomplete = "off" }) Female
+                                                </label>
+                                                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">
+                                            Date Of Birth <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @*<input id="birthday2" class="date-picker form-control" required="required" type="text">*@
+                                            @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { id = "BirthDate", @class = "form-control date-picker", required = "required", type = "date" } })
+                                            @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">
+                                            Age <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control", id = "Age", required = "required" } })
+                                            @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">
+                                            Email
+                                        </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @*@Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })*@
+                                            <p class="form-control">@data.Email</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">
+                                            Mobile Number <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @*@Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })*@
+                                            <p class="form-control">@data.MobileNumber</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div id="step-22">
+                                    <h2 class="StepTitle">Step 2 </h2>
+
+                                    <span class="section">Address Info</span>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">
+                                            Pan card Number
+                                        </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @*@Html.EditorFor(model => model.PancardNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.PancardNumber, "", new { @class = "text-danger" })*@
+                                            <p class="form-control">@data.UniqueId</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">
+                                            Aadhaar Card Number <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.EditorFor(model => model.AadhaarCardNumber, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                            @Html.ValidationMessageFor(model => model.AadhaarCardNumber, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">
+                                            Permanent Address <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.EditorFor(model => model.PermanentAddress, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                            @Html.ValidationMessageFor(model => model.PermanentAddress, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">
+                                            Current Address <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.EditorFor(model => model.CurrentAddress, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                            @Html.ValidationMessageFor(model => model.CurrentAddress, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div id="step-33">
+                                    <h2 class="StepTitle">Step 3 </h2>
+
+                                    <span class="section">Loan Info</span>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">
+                                            Loan Type <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.DropDownListFor(model => model.LoanType, new List<SelectListItem>
+                                            {
+                                            new SelectListItem{ Value = "Vehicle Loan", Text = "Vehicle Loan"},
+                                            new SelectListItem{ Value = "Personal Loan", Text = "Personal Loan"},
+                                            new SelectListItem{ Value = "Gold Loan", Text = "Gold Loan"}},
+                                            "Select Loan Type",
+                                            new
+                                                 {
+                                                @class = "form-control", // Add the Bootstrap form-control class
+                                                id = "LoanType",
+                                                required = "required"
+                                            }
+                                            )
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">
+                                            Required Loan Amount <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.EditorFor(model => model.RequiredLoanAmount, new { htmlAttributes = new { @class = "form-control", id = "RequiredLoanAmount", required = "required" } })
+                                            @Html.ValidationMessageFor(model => model.RequiredLoanAmount, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">
+                                            Rate Of Interest <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.EditorFor(model => model.RateOfInterest, new { htmlAttributes = new { @class = "form-control", required = "required", @readonly = "readonly" } })
+                                            @Html.ValidationMessageFor(model => model.RateOfInterest, "", new { @class = "text-danger", id = "RateOfInterest" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">
+                                            Loan Tenure In Month <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.EditorFor(model => model.LoanTenureInMonth, new { htmlAttributes = new { @class = "form-control", id = "LoanTenureInMonth", required = "required" } })
+                                            @Html.ValidationMessageFor(model => model.LoanTenureInMonth, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">
+                                            Loan EMI <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.EditorFor(model => model.LoanEMI, new { htmlAttributes = new { @class = "form-control", required = "required", @readonly = "readonly" } })
+                                            @Html.ValidationMessageFor(model => model.LoanEMI, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div id="step-44">
+                                    <h2 class="StepTitle">Step 4 </h2>
+
+                                    <span class="section">Documents</span>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">
+                                            Upload Files <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <ol id="listOfDoc"></ol>
+                                            <input type="file" name="file" id="uploadhere" class="file btn btn-small btn-primary" multiple required="required" style="display:none" />
+                                            <p class="btn btn-primary" type="button" onclick="$('#uploadhere').click()">Upload</p>
+                                            <p id="dl"><b>Uploaded Docs</b></p>
+                                            <ol id="fileList"></ol>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">
+                                            Summary <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6">
+                                            @Html.TextAreaFor(model => model.Summary, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                            @Html.ValidationMessageFor(model => model.Summary, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <button type="submit" id="submitButton" style="display:none;"></button>
+                            <!-- End SmartWizard Content -->
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        // Attach a click event handler to the "Log in" link/button
+        $(".buttonFinish").on("click", function () {
+            // Trigger the form submission when the button is clicked
+            $("#submitButton").click();
+        });
+    });
+    $(document).ready(function () {
+        $("#dl").hide();
+        $('#uploadhere').on('change',
+            function onChanges() {
+                if ($(this).val() !== "") $("#dl").show();
+                else $("#dl").hide();
+                var fileList = $('#fileList');
+                fileList.empty(); // Clear existing list items
+                $.each(this.files, function (index, file) {
+                    var listItem = $('<li>').text(file.name);
+                    fileList.append(listItem);
+                });
+            });
+    });
+</script>
+<script>
+
+    $(document).ready(function () {
+        $("#BirthDate").change(function () {
+            calculateAge();
+        });
+    });
+
+    function calculateAge() {
+        const birthDate = new Date($("#BirthDate").val());
+        const today = new Date();
+        const age = today.getFullYear() - birthDate.getFullYear();
+
+        if (
+            today.getMonth() < birthDate.getMonth() ||
+            (today.getMonth() === birthDate.getMonth() && today.getDate() < birthDate.getDate())
+        ) {
+            $("#Age").val(age - 1);
+        } else {
+            $("#Age").val(age);
+        }
+    }
+
+    $(document).ready(function () {
+        $("#LoanType").change(function () {
+            updateRateOfInterest();
+        });
+
+        updateRateOfInterest(); // Set initial rate based on selected loan type
+
+        function updateRateOfInterest() {
+            const selectedLoanType = $("#LoanType").val();
+            let rate = "";
+            let docList = "";
+            if (selectedLoanType === "Vehicle Loan") {
+                rate = "8.5";
+                $("#listOfDoc").empty();
+                docList = "PanCard Photo, Aadhar Card Photo, electricity Bill, School Certificate, Driving Lic Photo";
+            } else if (selectedLoanType === "Personal Loan") {
+                rate = "12";
+                $("#listOfDoc").empty();
+                docList = "PanCard Photo, Aadhar Card Photo, electricity Bill";
+            } else if (selectedLoanType === "Gold Loan") {
+                rate = "14";
+                $("#listOfDoc").empty();
+                docList = "PanCard Photo, Aadhar Card Photo";
+            }
+            $("#RateOfInterest").val(rate);
+            if (docList != "") {
+            var docArray = docList.split(', ');
+            $.each(docArray, function (index, el) {
+                var listItem = $('<li>').text(el);
+                $('#listOfDoc').append(listItem);
+            });
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        $("#LoanType").change(function () {
+            updateRateAndEMI();
+        });
+
+        $("#RequiredLoanAmount, #RateOfInterest, #LoanTenureInMonth").on("input", function () {
+            updateEMI();
+        });
+
+        $("#RateOfInterest").change(function () {
+            // Clear the LoanTenureInMonth field when rate of interest changes
+            $("#LoanTenureInMonth").val("");
+            updateEMI();
+        });
+
+        updateRateAndEMI(); /* Set initial rate and EMI */
+
+        function updateRateAndEMI() {
+            //updateRateOfInterest();
+            updateEMI();
+        }
+
+        function updateEMI() {
+            const loanAmount = parseFloat($("#RequiredLoanAmount").val());
+            const rateOfInterest = parseFloat($("#RateOfInterest").val()) / 100 / 12; /* Monthly rate */
+            const loanTenureMonths = parseFloat($("#LoanTenureInMonth").val());
+
+            // Handle the case when rateOfInterest is NaN
+            if (isNaN(rateOfInterest)) {
+                $("#LoanEMI").val("");
+                return;
+            }
+
+            if (!isNaN(loanAmount) && !isNaN(rateOfInterest) && !isNaN(loanTenureMonths)) {
+                const emi = calculateEMI(loanAmount, rateOfInterest, loanTenureMonths);
+                $("#LoanEMI").val(emi.toFixed(2));
+            } else {
+                $("#LoanEMI").val(""); // Clear the EMI field if any values are invalid
+            }
+        }
+
+        function calculateEMI(loanAmount, rateOfInterest, loanTenureMonths) {
+            const emi = (loanAmount * rateOfInterest * Math.pow(1 + rateOfInterest, loanTenureMonths)) /
+                (Math.pow(1 + rateOfInterest, loanTenureMonths) - 1);
+
+            return emi;
+        }
+    });
+
+</script>

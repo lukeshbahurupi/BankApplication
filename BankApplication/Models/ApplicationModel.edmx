@@ -1,0 +1,505 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ApplicationForm">
+          <Key>
+            <PropertyRef Name="ApplicationID" />
+          </Key>
+          <Property Name="ApplicationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApplicationDate" Type="date" Nullable="false" />
+          <Property Name="CustemerName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="BirthDate" Type="date" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="EmailId" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PancardNumber" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="AadhaarCardNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PermanentAddress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CurrentAddress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LoanType" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RequiredLoanAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="RateOfInterest" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="LoanTenureInMonth" Type="int" Nullable="false" />
+          <Property Name="LoanEMI" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Summary" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DocumentMappings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoanCode" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="DocumentCode" Type="nvarchar" MaxLength="450" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DocumentMasters">
+          <Key>
+            <PropertyRef Name="DocumentCode" />
+          </Key>
+          <Property Name="DocumentCode" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="DocumentName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FileDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Extension" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ApplicationID" Type="int" Nullable="false" />
+          <Property Name="LoanStatus" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="LoanTypes">
+          <Key>
+            <PropertyRef Name="LoanCode" />
+          </Key>
+          <Property Name="LoanCode" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="LoanDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LoanInterestRatePerAnnum" Type="decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="MinimumLoanAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MaximumLoanAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MinimumAgeRequired" Type="int" Nullable="false" />
+          <Property Name="MaximumAgeRequired" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoleMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RollName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserRolesMapping">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserPassword" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MobileNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UniqueId" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__FileDetai__Appli__398D8EEE">
+          <End Role="ApplicationForm" Type="Self.ApplicationForm" Multiplicity="1" />
+          <End Role="FileDetail" Type="Self.FileDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationForm">
+              <PropertyRef Name="ApplicationID" />
+            </Principal>
+            <Dependent Role="FileDetail">
+              <PropertyRef Name="ApplicationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRoles__RoleI__48CFD27E">
+          <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="1" />
+          <End Role="UserRolesMapping" Type="Self.UserRolesMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRolesMapping">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRoles__UserI__47DBAE45">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserRolesMapping" Type="Self.UserRolesMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRolesMapping">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentMappings_DocumentMasters_DocumentCode">
+          <End Role="DocumentMasters" Type="Self.DocumentMasters" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DocumentMappings" Type="Self.DocumentMappings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentMasters">
+              <PropertyRef Name="DocumentCode" />
+            </Principal>
+            <Dependent Role="DocumentMappings">
+              <PropertyRef Name="DocumentCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentMappings_LoanTypes_LoanCode">
+          <End Role="LoanTypes" Type="Self.LoanTypes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DocumentMappings" Type="Self.DocumentMappings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoanTypes">
+              <PropertyRef Name="LoanCode" />
+            </Principal>
+            <Dependent Role="DocumentMappings">
+              <PropertyRef Name="LoanCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelsStoreContainer">
+          <EntitySet Name="ApplicationForm" EntityType="Self.ApplicationForm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentMappings" EntityType="Self.DocumentMappings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentMasters" EntityType="Self.DocumentMasters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FileDetail" EntityType="Self.FileDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoanTypes" EntityType="Self.LoanTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleMaster" EntityType="Self.RoleMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRolesMapping" EntityType="Self.UserRolesMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__FileDetai__Appli__398D8EEE" Association="Self.FK__FileDetai__Appli__398D8EEE">
+            <End Role="ApplicationForm" EntitySet="ApplicationForm" />
+            <End Role="FileDetail" EntitySet="FileDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRoles__RoleI__48CFD27E" Association="Self.FK__UserRoles__RoleI__48CFD27E">
+            <End Role="RoleMaster" EntitySet="RoleMaster" />
+            <End Role="UserRolesMapping" EntitySet="UserRolesMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRoles__UserI__47DBAE45" Association="Self.FK__UserRoles__UserI__47DBAE45">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserRolesMapping" EntitySet="UserRolesMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentMappings_DocumentMasters_DocumentCode" Association="Self.FK_DocumentMappings_DocumentMasters_DocumentCode">
+            <End Role="DocumentMasters" EntitySet="DocumentMasters" />
+            <End Role="DocumentMappings" EntitySet="DocumentMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentMappings_LoanTypes_LoanCode" Association="Self.FK_DocumentMappings_LoanTypes_LoanCode">
+            <End Role="LoanTypes" EntitySet="LoanTypes" />
+            <End Role="DocumentMappings" EntitySet="DocumentMappings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ApplicationForm">
+          <Key>
+            <PropertyRef Name="ApplicationID" />
+          </Key>
+          <Property Name="ApplicationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApplicationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CustemerName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="EmailId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PancardNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AadhaarCardNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PermanentAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CurrentAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LoanType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RequiredLoanAmount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="RateOfInterest" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="LoanTenureInMonth" Type="Int32" Nullable="false" />
+          <Property Name="LoanEMI" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Summary" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FileDetails" Relationship="Self.FK__FileDetai__Appli__398D8EEE" FromRole="ApplicationForm" ToRole="FileDetail" />
+        </EntityType>
+        <EntityType Name="DocumentMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoanCode" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DocumentCode" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DocumentMaster" Relationship="Self.FK_DocumentMappings_DocumentMasters_DocumentCode" FromRole="DocumentMappings" ToRole="DocumentMasters" />
+          <NavigationProperty Name="LoanType" Relationship="Self.FK_DocumentMappings_LoanTypes_LoanCode" FromRole="DocumentMappings" ToRole="LoanTypes" />
+        </EntityType>
+        <EntityType Name="DocumentMaster">
+          <Key>
+            <PropertyRef Name="DocumentCode" />
+          </Key>
+          <Property Name="DocumentCode" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DocumentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DocumentMappings" Relationship="Self.FK_DocumentMappings_DocumentMasters_DocumentCode" FromRole="DocumentMasters" ToRole="DocumentMappings" />
+        </EntityType>
+        <EntityType Name="FileDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Extension" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ApplicationForm" Relationship="Self.FK__FileDetai__Appli__398D8EEE" FromRole="FileDetail" ToRole="ApplicationForm" />
+          <Property Name="LoanStatus" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LoanType">
+          <Key>
+            <PropertyRef Name="LoanCode" />
+          </Key>
+          <Property Name="LoanCode" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LoanDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LoanInterestRatePerAnnum" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="MinimumLoanAmount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MaximumLoanAmount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="MinimumAgeRequired" Type="Int32" Nullable="false" />
+          <Property Name="MaximumAgeRequired" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DocumentMappings" Relationship="Self.FK_DocumentMappings_LoanTypes_LoanCode" FromRole="LoanTypes" ToRole="DocumentMappings" />
+        </EntityType>
+        <EntityType Name="RoleMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RollName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserRolesMappings" Relationship="Self.FK__UserRoles__RoleI__48CFD27E" FromRole="RoleMaster" ToRole="UserRolesMapping" />
+        </EntityType>
+        <EntityType Name="UserRolesMapping">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RoleMaster" Relationship="Self.FK__UserRoles__RoleI__48CFD27E" FromRole="UserRolesMapping" ToRole="RoleMaster" />
+          <NavigationProperty Name="User" Relationship="Self.FK__UserRoles__UserI__47DBAE45" FromRole="UserRolesMapping" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MobileNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UniqueId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="UserRolesMappings" Relationship="Self.FK__UserRoles__UserI__47DBAE45" FromRole="Users" ToRole="UserRolesMapping" />
+        </EntityType>
+        <Association Name="FK__FileDetai__Appli__398D8EEE">
+          <End Role="ApplicationForm" Type="Self.ApplicationForm" Multiplicity="1" />
+          <End Role="FileDetail" Type="Self.FileDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationForm">
+              <PropertyRef Name="ApplicationID" />
+            </Principal>
+            <Dependent Role="FileDetail">
+              <PropertyRef Name="ApplicationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentMappings_DocumentMasters_DocumentCode">
+          <End Role="DocumentMasters" Type="Self.DocumentMaster" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DocumentMappings" Type="Self.DocumentMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentMasters">
+              <PropertyRef Name="DocumentCode" />
+            </Principal>
+            <Dependent Role="DocumentMappings">
+              <PropertyRef Name="DocumentCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentMappings_LoanTypes_LoanCode">
+          <End Role="LoanTypes" Type="Self.LoanType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DocumentMappings" Type="Self.DocumentMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoanTypes">
+              <PropertyRef Name="LoanCode" />
+            </Principal>
+            <Dependent Role="DocumentMappings">
+              <PropertyRef Name="LoanCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRoles__RoleI__48CFD27E">
+          <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="1" />
+          <End Role="UserRolesMapping" Type="Self.UserRolesMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRolesMapping">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRoles__UserI__47DBAE45">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="UserRolesMapping" Type="Self.UserRolesMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRolesMapping">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BankApplication_dbContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ApplicationForms" EntityType="Self.ApplicationForm" />
+          <EntitySet Name="DocumentMappings" EntityType="Self.DocumentMapping" />
+          <EntitySet Name="DocumentMasters" EntityType="Self.DocumentMaster" />
+          <EntitySet Name="FileDetails" EntityType="Self.FileDetail" />
+          <EntitySet Name="LoanTypes" EntityType="Self.LoanType" />
+          <EntitySet Name="RoleMasters" EntityType="Self.RoleMaster" />
+          <EntitySet Name="UserRolesMappings" EntityType="Self.UserRolesMapping" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__FileDetai__Appli__398D8EEE" Association="Self.FK__FileDetai__Appli__398D8EEE">
+            <End Role="ApplicationForm" EntitySet="ApplicationForms" />
+            <End Role="FileDetail" EntitySet="FileDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentMappings_DocumentMasters_DocumentCode" Association="Self.FK_DocumentMappings_DocumentMasters_DocumentCode">
+            <End Role="DocumentMasters" EntitySet="DocumentMasters" />
+            <End Role="DocumentMappings" EntitySet="DocumentMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentMappings_LoanTypes_LoanCode" Association="Self.FK_DocumentMappings_LoanTypes_LoanCode">
+            <End Role="LoanTypes" EntitySet="LoanTypes" />
+            <End Role="DocumentMappings" EntitySet="DocumentMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRoles__RoleI__48CFD27E" Association="Self.FK__UserRoles__RoleI__48CFD27E">
+            <End Role="RoleMaster" EntitySet="RoleMasters" />
+            <End Role="UserRolesMapping" EntitySet="UserRolesMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRoles__UserI__47DBAE45" Association="Self.FK__UserRoles__UserI__47DBAE45">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserRolesMapping" EntitySet="UserRolesMappings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelsStoreContainer" CdmEntityContainer="BankApplication_dbContext">
+          <EntitySetMapping Name="ApplicationForms">
+            <EntityTypeMapping TypeName="Models.ApplicationForm">
+              <MappingFragment StoreEntitySet="ApplicationForm">
+                <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+                <ScalarProperty Name="ApplicationDate" ColumnName="ApplicationDate" />
+                <ScalarProperty Name="CustemerName" ColumnName="CustemerName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PancardNumber" ColumnName="PancardNumber" />
+                <ScalarProperty Name="AadhaarCardNumber" ColumnName="AadhaarCardNumber" />
+                <ScalarProperty Name="PermanentAddress" ColumnName="PermanentAddress" />
+                <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
+                <ScalarProperty Name="LoanType" ColumnName="LoanType" />
+                <ScalarProperty Name="RequiredLoanAmount" ColumnName="RequiredLoanAmount" />
+                <ScalarProperty Name="RateOfInterest" ColumnName="RateOfInterest" />
+                <ScalarProperty Name="LoanTenureInMonth" ColumnName="LoanTenureInMonth" />
+                <ScalarProperty Name="LoanEMI" ColumnName="LoanEMI" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentMappings">
+            <EntityTypeMapping TypeName="Models.DocumentMapping">
+              <MappingFragment StoreEntitySet="DocumentMappings">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LoanCode" ColumnName="LoanCode" />
+                <ScalarProperty Name="DocumentCode" ColumnName="DocumentCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentMasters">
+            <EntityTypeMapping TypeName="Models.DocumentMaster">
+              <MappingFragment StoreEntitySet="DocumentMasters">
+                <ScalarProperty Name="DocumentCode" ColumnName="DocumentCode" />
+                <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileDetails">
+            <EntityTypeMapping TypeName="Models.FileDetail">
+              <MappingFragment StoreEntitySet="FileDetail">
+                <ScalarProperty Name="LoanStatus" ColumnName="LoanStatus" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoanTypes">
+            <EntityTypeMapping TypeName="Models.LoanType">
+              <MappingFragment StoreEntitySet="LoanTypes">
+                <ScalarProperty Name="LoanCode" ColumnName="LoanCode" />
+                <ScalarProperty Name="LoanDescription" ColumnName="LoanDescription" />
+                <ScalarProperty Name="LoanInterestRatePerAnnum" ColumnName="LoanInterestRatePerAnnum" />
+                <ScalarProperty Name="MinimumLoanAmount" ColumnName="MinimumLoanAmount" />
+                <ScalarProperty Name="MaximumLoanAmount" ColumnName="MaximumLoanAmount" />
+                <ScalarProperty Name="MinimumAgeRequired" ColumnName="MinimumAgeRequired" />
+                <ScalarProperty Name="MaximumAgeRequired" ColumnName="MaximumAgeRequired" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleMasters">
+            <EntityTypeMapping TypeName="Models.RoleMaster">
+              <MappingFragment StoreEntitySet="RoleMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RollName" ColumnName="RollName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRolesMappings">
+            <EntityTypeMapping TypeName="Models.UserRolesMapping">
+              <MappingFragment StoreEntitySet="UserRolesMapping">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Models.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

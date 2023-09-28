@@ -1,0 +1,126 @@
+﻿@{
+    Layout = "~/Views/Shared/_AccountLayout.cshtml"; // keep it on top
+}
+
+
+
+@model BankApplication.Models.Login_Signup
+
+<div class="animate form login_form">
+    <section class="login_content">
+        @using (Html.BeginForm("AdminLogin", "Accounts", FormMethod.Post))
+        {
+
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Login.ID)
+            <h1>Login Form</h1>
+            <div>
+                @Html.EditorFor(model => model.Login.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
+                @Html.ValidationMessageFor(model => model.Login.Email, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.EditorFor(model => model.Login.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password" } })
+                @Html.ValidationMessageFor(model => model.Login.Password, "", new { @class = "text-danger" })
+            </div>
+            <div>
+
+                @*<input type="submit" value=" Admin Login " class="btn btn-default submit" />*@
+                <button type="submit" id="LsubmitButton" style="display:none;"></button>
+                <a class="btn btn-default submit" href="javascript:void(0);" id="LoginButton">Log in</a>
+
+                <a class="reset_pass" href="#">Lost your password?</a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="separator">
+                <p class="change_link">
+                    New to site?
+                    <a href="#signup" class="to_register"> Create Account as Admin</a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                    <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+                    <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 4 template. Privacy and Terms</p>
+                </div>
+            </div>
+
+        }
+    </section>
+</div>
+
+<div id="register" class="animate form registration_form">
+    <section class="login_content">
+        @using (Html.BeginForm("AdminSignup", "Accounts", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.HiddenFor(model => model.Signup.ID)
+            <h1>Create Account</h1>
+            <div>
+                @Html.EditorFor(model => model.Signup.UserName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Username" } })
+                @Html.ValidationMessageFor(model => model.Signup.UserName, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.EditorFor(model => model.Signup.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
+                @Html.ValidationMessageFor(model => model.Signup.Email, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.EditorFor(model => model.Signup.MobileNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "Mobile Number" } })
+                @Html.ValidationMessageFor(model => model.Signup.MobileNumber, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.EditorFor(model => model.Signup.UniqueId, new { htmlAttributes = new { @class = "form-control", @placeholder = "Admin Token Number" } })
+                @Html.ValidationMessageFor(model => model.Signup.UniqueId, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.EditorFor(model => model.Signup.UserPassword, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password" } })
+                @Html.ValidationMessageFor(model => model.Signup.UserPassword, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                @*<input type="submit" value="Signup" class="btn btn-default submit" />*@
+                <button type="submit" id="submitButton" style="display:none;"></button>
+                <a class="btn btn-default submit" href="javascript:void(0);" id="SignupButton">Sign up</a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="separator">
+                <p class="change_link">
+                    Already a member ?
+                    <a href="#signin" class="to_register"> Log in </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                    <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+                    <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 4 template. Privacy and Terms</p>
+                </div>
+            </div>
+        }
+    </section>
+</div>
+<script>
+    $(document).ready(function () {
+        // Attach a click event handler to the "Log in" link/button
+        $("#SignupButton").on("click", function () {
+            // Trigger the form submission when the button is clicked
+            $("#submitButton").click();
+        });
+        // Attach a click event handler to the "Log in" link/button
+        $("#LoginButton").on("click", function () {
+            // Trigger the form submission when the button is clicked
+            $("#LsubmitButton").click();
+        });
+    });
+</script>

@@ -1,0 +1,115 @@
+﻿@{
+    int i = 0;
+}
+@model IEnumerable<BankApplication.Models.LoanType>
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Available  Loan's'</h3>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="col-md-12 col-sm-12  ">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Loan Detail's</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    @*<li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Settings 1</a>
+                                <a class="dropdown-item" href="#">Settings 2</a>
+                            </div>
+                        </li>*@
+                    @*<li>
+                            <a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>*@
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>SrNo</th>
+                            <th>
+                                Loan
+                                type
+                            </th>
+                            <th>
+                                Loan Interest
+                                Rate PerAnnum
+                            </th>
+                            <th>
+                                Minimum
+                                Loan Amount
+                            </th>
+                            <th>
+                                Maximum
+                                Loan Amount
+                            </th>
+                            <th>
+                                Minimum Age
+                                Required
+                            </th>
+                            <th>
+                                Maximum Age
+                                Required
+                            </th>
+                            <th>
+                                Required
+                                Documents
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            i++;
+                            <tr>
+                                <td scope="row">@i</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LoanDescription)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LoanInterestRatePerAnnum)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MinimumLoanAmount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MaximumLoanAmount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MinimumAgeRequired)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MaximumAgeRequired)
+                                </td>
+                                <td>
+                                    <p onclick='$("#partialViewContainer").load("@Url.Action("PartialTable", "DocumentMappings",new { id = item.LoanCode })")' class="btn btn-dark">View</p>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div id="partialViewContainer">
+        <!-- The partial view will be loaded here -->
+    </div>
+    @Html.Partial("_Apply")
+    <div class="clearfix"></div>
+
+</div>

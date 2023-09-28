@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="857ea1e11e3f4067ba6555739022e2f3" Name="Diagram1">
+        <EntityTypeShape EntityType="Models.ApplicationForm" Width="1.5" PointX="9.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.DocumentMapping" Width="1.5" PointX="7.375" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.DocumentMaster" Width="1.5" PointX="5" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.FileDetail" Width="1.5" PointX="11.125" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.LoanType" Width="1.5" PointX="5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.RoleMaster" Width="1.5" PointX="0.5" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.UserRolesMapping" Width="1.5" PointX="2.875" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.User" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <AssociationConnector Association="Models.FK__FileDetai__Appli__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_DocumentMappings_DocumentMasters_DocumentCode" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_DocumentMappings_LoanTypes_LoanCode" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK__UserRoles__RoleI__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK__UserRoles__UserI__47DBAE45" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
