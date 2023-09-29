@@ -36,18 +36,18 @@
                                     @if (Model.form.LoanStatus == null)
                                     {
 
-                                        <span class="float-right">Pending <i class="fa fa-spinner"></i></span>
+                                        <span class="float-right"><i class="fa fa-spinner"></i> Pending </span>
                                     }
                                     else
                                     {
                                         if (Model.form.LoanStatus == "true")
                                         {
 
-                                            <span class="float-right">Approved <i class="fa fa-check-circle"></i></span>
+                                            <span class="float-right"><i class="fa fa-check-circle"> Approved </i></span>
                                         }
                                         else
                                         {
-                                            <span class="float-right">Reject <i class="fa fa-minus-circle"></i></span>
+                                            <span class="float-right"><i class="fa fa-minus-circle"></i> Reject</span>
                                         }
                                     }
 

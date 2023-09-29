@@ -21,11 +21,9 @@ namespace BankApplication.Controllers
         {
             return View(db.ApplicationForms.ToList());
         }
-        public ActionResult ListView()
-        {
-            return View(db.ApplicationForms.ToList());
-        }
+
         // GET: ApplicationForm/Details/5
+        [Authorize(Roles ="Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -99,7 +97,7 @@ namespace BankApplication.Controllers
                     applicationForm.FileDetails = fileDetails;
                     db.ApplicationForms.Add(applicationForm);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("UserProfile", "Accounts");
                 }
                 catch (Exception ex)
                 {
