@@ -1,6 +1,7 @@
 ﻿using BankApplication.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
@@ -11,9 +12,16 @@ namespace BankApplication.Controllers
 {
     public class AccountsController : Controller
     {
+        private BankApplication_dbContext db = new BankApplication_dbContext();
         //private readonly BankApplication_dbContext _context = new BankApplication_dbContext();
         // GET: Accounts
-        
+        public ActionResult UserProfile()
+        {
+            ViewModel model = new ViewModel();
+            model.user = db.Users.FirstOrDefault(el => el.UserName == User.Identity.Name);
+            model.form = db.ApplicationForms.FirstOrDefault(el => el.CustemerName == model.user.UserName);
+            return View(model);
+        } 
         #region/**********< USER >***********/
         public ActionResult Login()
         {
@@ -36,9 +44,9 @@ namespace BankApplication.Controllers
                         if (isValidUser && tokenvalid)
                         {
                             FormsAuthentication.SetAuthCookie(usr.UserName, false);
-                            TempData["Success"] = $"Welcome{User.Identity.Name}";
-                            TempData.Keep("Success");
-                            return RedirectToAction("Index");
+                            //TempData["Success"] = $"Welcome{User.Identity.Name}";
+                            //TempData.Keep("Success");
+                            return RedirectToAction("Create", "ApplicationForm");
                         }
                     }
                 }
@@ -113,10 +121,10 @@ namespace BankApplication.Controllers
                     bool isValidUser = _context.Users.Any(user => user.Email == model.Login.Email && user.UserPassword == model.Login.Password);
                     if (isValidUser && tokenvalid)
                     {
-                        FormsAuthentication.SetAuthCookie(usr.UserName.Split(' ')[0], false);
-                        TempData["Success"] = $"Welcome{User.Identity.Name}";
-                        TempData.Keep("Success");
-                        return RedirectToAction("Index");
+                        FormsAuthentication.SetAuthCookie(usr.UserName, false);
+                        //TempData["Success"] = $"Welcome{User.Identity.Name}";
+                        //TempData.Keep("Success");
+                        return RedirectToAction("Index","Home");
                     }
                 }
                 catch (Exception ex)

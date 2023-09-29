@@ -4,151 +4,240 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>ApplicationForm</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ApplicationDate)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ApplicationDate)
-        </dd>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">@Model.CustemerName</h2>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.ApplicationDate)
+                            </strong>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CustemerName)
-        </dt>
+                            <span class="float-right">
+                                @Html.DisplayFor(model => model.ApplicationDate)
+                            </span>
+                        </li>
 
-        <dd>
-            @Html.DisplayFor(model => model.CustemerName)
-        </dd>
+                        <li class="list-group-item">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.CustemerName)
+                            </strong>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
+                            <span class="float-right">
+                                @Html.DisplayFor(model => model.CustemerName)
+                            </span>
+                        </li>
 
-        <dd>
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
+                        <li class="list-group-item">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.Gender)
+                            </strong>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </dt>
+                            <span class="float-right">
+                                @Html.DisplayFor(model => model.Gender)
+                            </span>
+                        </li>
 
-        <dd>
-            @Html.DisplayFor(model => model.BirthDate)
-        </dd>
+                        <li class="list-group-item">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.BirthDate)
+                            </strong>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
+                            <span class="float-right">
+                                @Html.DisplayFor(model => model.BirthDate)
+                            </span>
+                        </li>
 
-        <dd>
-            @Html.DisplayFor(model => model.Age)
-        </dd>
+                        <li class="list-group-item">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.Age)
+                            </strong>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EmailId)
-        </dt>
+                            <span class="float-right">
+                                @Html.DisplayFor(model => model.Age)
+                            </span>
+                        </li>
 
-        <dd>
-            @Html.DisplayFor(model => model.EmailId)
-        </dd>
+                        <li class="list-group-item">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.EmailId)
+                            </strong>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
+                            <span class="float-right">
+                                @Html.DisplayFor(model => model.EmailId)
+                            </span>
+                        </li>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
+                        <li class="list-group-item">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.PhoneNumber)
+                            </strong>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PancardNumber)
-        </dt>
+                            <span class="float-right">
+                                @Html.DisplayFor(model => model.PhoneNumber)
+                            </span>
+                        </li>
 
-        <dd>
-            @Html.DisplayFor(model => model.PancardNumber)
-        </dd>
+                        <li class="list-group-item">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.PancardNumber)
+                            </strong>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AadhaarCardNumber)
-        </dt>
+                            <span class="float-right">
+                                @Html.DisplayFor(model => model.PancardNumber)
+                            </span>
+                        </li>
 
-        <dd>
-            @Html.DisplayFor(model => model.AadhaarCardNumber)
-        </dd>
+                        <li class="list-group-item">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.AadhaarCardNumber)
+                            </strong>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PermanentAddress)
-        </dt>
+                            <span class="float-right">
+                                @Html.DisplayFor(model => model.AadhaarCardNumber)
+                            </span>
+                        </li>
 
-        <dd>
-            @Html.DisplayFor(model => model.PermanentAddress)
-        </dd>
+                        <li class="list-group-item">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.PermanentAddress)
+                            </strong>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CurrentAddress)
-        </dt>
+                            <span class="float-right">
+                                @Html.DisplayFor(model => model.PermanentAddress)
+                            </span>
+                        </li>
 
-        <dd>
-            @Html.DisplayFor(model => model.CurrentAddress)
-        </dd>
+                        <li class="list-group-item">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.CurrentAddress)
+                            </strong>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LoanType)
-        </dt>
+                            <span class="float-right">
+                                @Html.DisplayFor(model => model.CurrentAddress)
+                            </span>
+                        </li>
 
-        <dd>
-            @Html.DisplayFor(model => model.LoanType)
-        </dd>
+                        <li class="list-group-item">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.LoanType)
+                            </strong>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RequiredLoanAmount)
-        </dt>
+                            <span class="float-right">
+                                @Html.DisplayFor(model => model.LoanType)
+                            </span>
+                        </li>
 
-        <dd>
-            @Html.DisplayFor(model => model.RequiredLoanAmount)
-        </dd>
+                        <li class="list-group-item">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.RequiredLoanAmount)
+                            </strong>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RateOfInterest)
-        </dt>
+                            <span class="float-right">
+                                @Html.DisplayFor(model => model.RequiredLoanAmount)
+                            </span>
+                        </li>
 
-        <dd>
-            @Html.DisplayFor(model => model.RateOfInterest)
-        </dd>
+                        <li class="list-group-item">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.RateOfInterest)
+                            </strong>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LoanTenureInMonth)
-        </dt>
+                            <span class="float-right">
+                                @Html.DisplayFor(model => model.RateOfInterest)
+                            </span>
+                        </li>
 
-        <dd>
-            @Html.DisplayFor(model => model.LoanTenureInMonth)
-        </dd>
+                        <li class="list-group-item">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.LoanTenureInMonth)
+                            </strong>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LoanEMI)
-        </dt>
+                            <span class="float-right">
+                                @Html.DisplayFor(model => model.LoanTenureInMonth)
+                            </span>
+                        </li>
 
-        <dd>
-            @Html.DisplayFor(model => model.LoanEMI)
-        </dd>
+                        <li class="list-group-item">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.LoanEMI)
+                            </strong>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Summary)
-        </dt>
+                            <span class="float-right">
+                                @Html.DisplayFor(model => model.LoanEMI)
+                            </span>
+                        </li>
 
-        <dd>
-            @Html.DisplayFor(model => model.Summary)
-        </dd>
+                        <li class="list-group-item">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.Summary)
+                            </strong>
 
-    </dl>
+                            <span class="float-right">
+                                @Html.DisplayFor(model => model.Summary)
+                            </span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.LoanStatus)
+                            </strong>
+                            @if (Model.LoanStatus == null)
+                            {
+
+
+                                <span class="float-right">
+                                    <i class="fa fa-spinner"></i> Pending
+                                </span>
+                            }
+                            else
+                            {
+                                if (Model.LoanStatus == "true")
+                                {
+                                    <span class="float-right">
+                                        <i class="fa fa-check-circle"></i> Approved
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="float-right">
+                                        <i class="fa fa-minus-circle"></i> Rejected
+                                    </span>
+                                }
+
+                            }
+                        </li>
+                        @foreach (var el in Model.FileDetails)
+                        {
+                            <li class="list-group-item">
+
+                                <strong>
+                                    @el.FileName
+                                </strong>
+
+                                <span class="float-right">
+                                    @Html.ActionLink("Download", "Download", "ApplicationForm", new { p = el.Id + el.Extension, d = el.FileName })
+                                </span>
+                                
+                            </li>
+                            }
+                        <li class="list-group-item text-center">
+                            <p>
+                                <a href="/ApplicationForm/Edit/@Model.ApplicationID" class="text-bg-secondary">Edit</a>
+                            </p>
+                        </li>
+                        <li class="list-group-item text-center">
+                            <p>
+                                <a href="/ApplicationForm/index" class="text-bg-secondary">Back To List</a>
+                            </p>
+                        </li>
+                        </ul>                    
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ApplicationID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

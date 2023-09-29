@@ -18,7 +18,6 @@ namespace BankApplication.Models
         public string FileName { get; set; }
         public string Extension { get; set; }
         public int ApplicationID { get; set; }
-        public string LoanStatus { get; set; }
     
         public virtual ApplicationForm ApplicationForm { get; set; }
     }

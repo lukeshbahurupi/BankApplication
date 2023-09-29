@@ -21,7 +21,10 @@ namespace BankApplication.Controllers
         {
             return View(db.ApplicationForms.ToList());
         }
-
+        public ActionResult ListView()
+        {
+            return View(db.ApplicationForms.ToList());
+        }
         // GET: ApplicationForm/Details/5
         public ActionResult Details(int? id)
         {
@@ -114,14 +117,14 @@ namespace BankApplication.Controllers
         }
 
         // GET: ApplicationForm/Edit/5
-        [Authorize(Roles ="User")]
+        [Authorize(Roles ="Admin")]
         public ActionResult Edit(int? id)
         {
-            User model = db.Users.FirstOrDefault(el => el.UserName == User.Identity.Name);
-            if (model != null)
-            {
-                ViewBag.data = model;               
-            }
+            //User model = db.Users.FirstOrDefault(el => el.UserName == User.Identity.Name);
+            //if (model != null)
+            //{
+            //    ViewBag.data = model;               
+            //}
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -139,41 +142,17 @@ namespace BankApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "User")]
-        public ActionResult Edit([Bind(Include = "Gender,BirthDate,Age,AadhaarCardNumber,PermanentAddress,CurrentAddress,LoanType,RequiredLoanAmount,RateOfInterest,LoanTenureInMonth,LoanEMI,Summary")] ApplicationForm applicationForm)
+        [Authorize(Roles = "Admin")]
+        public ActionResult Edit([Bind(Include = "ApplicationID,LoanStatus")] ApplicationForm applicationForm)
         {
-            User data = db.Users.FirstOrDefault(el => el.UserName == User.Identity.Name);
-            if (ModelState.IsValid)
-            {
+            
+            //if (ModelState.IsValid)
+            //{
+                    ApplicationForm Form = db.ApplicationForms.Find(applicationForm.ApplicationID);
                 try
                 {
-                   
-                    for (int i = 0; i < Request.Files.Count; i++)
-                    {
-                        var file = Request.Files[i];
-                        if (file != null && file.ContentLength > 0)
-                        {
-                            var fileName = Path.GetFileName(file.FileName);
-                            FileDetail detail = new FileDetail()
-                            {
-                                FileName = fileName,
-                                Extension = Path.GetExtension(fileName),
-                                Id = Guid.NewGuid()
-                            };
-                            
-                            var path = Path.Combine(Server.MapPath("~/App_Data/Upload"), detail.Id + detail.Extension);
-                            file.SaveAs(path);
-                            db.Entry(detail).State = EntityState.Added;
-                        }
-                        
-                    }
-                    applicationForm.ApplicationDate = DateTime.Today;
-                    applicationForm.CustemerName = data.UserName;
-                    applicationForm.EmailId = data.Email;
-                    applicationForm.PancardNumber = data.UniqueId;
-                    applicationForm.PhoneNumber = data.MobileNumber;
-                    //applicationForm.FileDetails = fileDetails;
-                    db.Entry(applicationForm).State = EntityState.Modified;
+                    Form.LoanStatus = applicationForm.LoanStatus;
+                    db.Entry(Form).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -181,8 +160,8 @@ namespace BankApplication.Controllers
                 {
                     Console.WriteLine(ex.Message);
                 }
-            }
-           return View(applicationForm);
+            //}
+           return View(Form);
         }
 
         // GET: ApplicationForm/Delete/5
@@ -212,7 +191,47 @@ namespace BankApplication.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        
+
+        public FileResult Download(String p, String d)
+        {
+            return File(Path.Combine(Server.MapPath("~/App_Data/Upload/"), p), System.Net.Mime.MediaTypeNames.Application.Octet, d);
+        }
+        [HttpPost]
+        public JsonResult DeleteFile(string id)
+        {
+            if (String.IsNullOrEmpty(id))
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(new { Result = "Error" });
+            }
+            try
+            {
+                Guid guid = new Guid(id);
+                FileDetail fileDetail = db.FileDetails.Find(guid);
+                if (fileDetail == null)
+                {
+                    Response.StatusCode = (int)HttpStatusCode.NotFound;
+                    return Json(new { Result = "Error" });
+                }
+
+                //Remove from database
+                db.FileDetails.Remove(fileDetail);
+                db.SaveChanges();
+
+                //Delete file from the file system
+                var path = Path.Combine(Server.MapPath("~/App_Data/Upload/"), fileDetail.Id + fileDetail.Extension);
+                if (System.IO.File.Exists(path))
+                {
+                    System.IO.File.Delete(path);
+                }
+                return Json(new { Result = "OK" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = "ERROR", Message = ex.Message });
+            }
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

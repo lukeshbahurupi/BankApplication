@@ -38,6 +38,7 @@ namespace BankApplication.Models
         public int LoanTenureInMonth { get; set; }
         public decimal LoanEMI { get; set; }
         public string Summary { get; set; }
+        public string LoanStatus { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FileDetail> FileDetails { get; set; }

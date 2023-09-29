@@ -27,6 +27,7 @@
           <Property Name="LoanTenureInMonth" Type="int" Nullable="false" />
           <Property Name="LoanEMI" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Summary" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="LoanStatus" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="DocumentMappings">
           <Key>
@@ -51,7 +52,6 @@
           <Property Name="FileName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Extension" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ApplicationID" Type="int" Nullable="false" />
-          <Property Name="LoanStatus" Type="nvarchar" MaxLength="5" />
         </EntityType>
         <EntityType Name="LoanTypes">
           <Key>
@@ -212,6 +212,7 @@
           <Property Name="LoanEMI" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Summary" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="FileDetails" Relationship="Self.FK__FileDetai__Appli__398D8EEE" FromRole="ApplicationForm" ToRole="FileDetail" />
+          <Property Name="LoanStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DocumentMapping">
           <Key>
@@ -240,7 +241,6 @@
           <Property Name="Extension" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ApplicationID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ApplicationForm" Relationship="Self.FK__FileDetai__Appli__398D8EEE" FromRole="FileDetail" ToRole="ApplicationForm" />
-          <Property Name="LoanStatus" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="LoanType">
           <Key>
@@ -388,6 +388,7 @@
           <EntitySetMapping Name="ApplicationForms">
             <EntityTypeMapping TypeName="Models.ApplicationForm">
               <MappingFragment StoreEntitySet="ApplicationForm">
+                <ScalarProperty Name="LoanStatus" ColumnName="LoanStatus" />
                 <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
                 <ScalarProperty Name="ApplicationDate" ColumnName="ApplicationDate" />
                 <ScalarProperty Name="CustemerName" ColumnName="CustemerName" />
@@ -429,7 +430,6 @@
           <EntitySetMapping Name="FileDetails">
             <EntityTypeMapping TypeName="Models.FileDetail">
               <MappingFragment StoreEntitySet="FileDetail">
-                <ScalarProperty Name="LoanStatus" ColumnName="LoanStatus" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FileName" ColumnName="FileName" />
                 <ScalarProperty Name="Extension" ColumnName="Extension" />

@@ -1,0 +1,67 @@
+﻿@model BankApplication.Models.ViewModel
+@{
+    ViewBag.Title = "UserProfile";
+    var data = ViewBag.data;
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">@Model.user.UserName</h2>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Username:</strong> <span class="float-right">@Model.user.UserName</span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Email:</strong> <span class="float-right">@Model.user.Email</span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Phone Number:</strong> <span class="float-right">+91 @Model.user.MobileNumber</span>
+                        </li>
+                        @if (User.IsInRole("User"))
+                        {
+                            <li class="list-group-item">
+                                <strong>Pan Card Number:</strong> <span class="float-right">@Model.user.UniqueId</span>
+                            </li>
+                            if (Model.form != null)
+                            {
+                                <li class=" list-group-item"><strong>Loan Type:</strong> <span class="float-right">@Model.form.LoanType</span></li>
+                                <li class=" list-group-item"><strong>Loan Tenure In Month:</strong> <span class="float-right">@Model.form.LoanTenureInMonth</span></li>
+                                <li class=" list-group-item"><strong>Rate Of Interest:</strong> <span class="float-right">@Model.form.RateOfInterest %</span></li>
+                                <li class=" list-group-item"><strong>Loan EMI Per Month:</strong> <span class="float-right">@Model.form.LoanEMI <i class=" fa fa-rupee"></i></span></li>
+                                <li class=" list-group-item">
+                                    <strong>Loan Status:</strong>
+                                    @if (Model.form.LoanStatus == null)
+                                    {
+
+                                        <span class="float-right">Pending <i class="fa fa-spinner"></i></span>
+                                    }
+                                    else
+                                    {
+                                        if (Model.form.LoanStatus == "true")
+                                        {
+
+                                            <span class="float-right">Approved <i class="fa fa-check-circle"></i></span>
+                                        }
+                                        else
+                                        {
+                                            <span class="float-right">Reject <i class="fa fa-minus-circle"></i></span>
+                                        }
+                                    }
+
+                                </li>
+                            }
+                        }
+                    </ul>
+                    @if (Model.form == null && User.IsInRole("User"))
+                    {
+                        @Html.Partial("_Apply")
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

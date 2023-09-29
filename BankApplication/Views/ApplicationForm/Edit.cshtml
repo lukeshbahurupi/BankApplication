@@ -1,7 +1,7 @@
 ﻿@model BankApplication.Models.ApplicationForm
 @{
-    var data = ViewBag.data;
-    //Model.CustemerName = data.UserName;
+//var data = ViewBag.data;
+//Model.CustemerName = data.UserName;
 
 }
 <div class="">
@@ -29,10 +29,11 @@
             <div class="x_panel">
 
                 <div class="x_content">
-                    @using (Html.BeginForm("Create", "ApplicationForm", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    @using (Html.BeginForm("Edit", "ApplicationForm"))
                     {
                         <form class="form-horizontal form-label-left">
                             @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model => model.ApplicationID)
                             <h2>Loan Application Form</h2>
                             <!-- Tabs -->
                             <div id="wizard_verticle" class="form_wizard wizard_verticle">
@@ -74,20 +75,14 @@
                                             @*<input type="text" id="first-name2" required="required" class="form-control">*@
                                             @*@Html.EditorFor(model => model.CustemerName, new { htmlAttributes = new { @class = "form-control", id = "first-name", required = "required",  style = "display:none" } })*@
                                             @*@Html.ValidationMessageFor(model => model.CustemerName, "", new { @class = "text-danger" })*@
-                                            <p class="form-control">@data.UserName</p>
+                                            <p class="form-control">@Model.CustemerName</p>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-3 col-sm-3 label-align">Gender<span class="required">*</span></label>
                                         <div class="col-md-6 col-sm-6">
                                             <div id="gender2" class="btn-group" data-toggle="buttons">
-                                                <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-secondary">
-                                                    @Html.RadioButtonFor(model => model.Gender, "male", new { @class = "join-btn form-check-input", autocomplete = "off" })   &nbsp; Male &nbsp;
-                                                </label>
-                                                <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-secondary">
-                                                    @Html.RadioButtonFor(model => model.Gender, "female", new { @class = "join-btn form-check-input", autocomplete = "off" }) Female
-                                                </label>
-                                                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                                                <p class="form-control">@Model.Gender</p>
                                             </div>
                                         </div>
                                     </div>
@@ -96,9 +91,7 @@
                                             Date Of Birth <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6">
-                                            @*<input id="birthday2" class="date-picker form-control" required="required" type="text">*@
-                                            @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { id = "BirthDate", @class = "form-control date-picker", required = "required", type = "date" } })
-                                            @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+                                            <p class="form-control">@Model.BirthDate</p>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -106,8 +99,7 @@
                                             Age <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6">
-                                            @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control", id = "Age", required = "required" } })
-                                            @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                                            <p class="form-control">@Model.Age</p>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -115,9 +107,7 @@
                                             Email
                                         </label>
                                         <div class="col-md-6 col-sm-6">
-                                            @*@Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })*@
-                                            <p class="form-control">@data.Email</p>
+                                            <p class="form-control">@Model.EmailId</p>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -125,9 +115,7 @@
                                             Mobile Number <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6">
-                                            @*@Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })*@
-                                            <p class="form-control">@data.MobileNumber</p>
+                                            <p class="form-control">@Model.PhoneNumber</p>
                                         </div>
                                     </div>
 
@@ -141,9 +129,7 @@
                                             Pan card Number
                                         </label>
                                         <div class="col-md-6 col-sm-6">
-                                            @*@Html.EditorFor(model => model.PancardNumber, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.PancardNumber, "", new { @class = "text-danger" })*@
-                                            <p class="form-control">@data.UniqueId</p>
+                                            <p class="form-control">@Model.PancardNumber</p>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -151,8 +137,7 @@
                                             Aadhaar Card Number <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6">
-                                            @Html.EditorFor(model => model.AadhaarCardNumber, new { htmlAttributes = new { @class = "form-control", required = "required" } })
-                                            @Html.ValidationMessageFor(model => model.AadhaarCardNumber, "", new { @class = "text-danger" })
+                                            <p class="form-control">@Model.AadhaarCardNumber</p>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -160,8 +145,7 @@
                                             Permanent Address <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6">
-                                            @Html.EditorFor(model => model.PermanentAddress, new { htmlAttributes = new { @class = "form-control", required = "required" } })
-                                            @Html.ValidationMessageFor(model => model.PermanentAddress, "", new { @class = "text-danger" })
+                                            <p class="form-control">@Model.PermanentAddress</p>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -169,8 +153,7 @@
                                             Current Address <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6">
-                                            @Html.EditorFor(model => model.CurrentAddress, new { htmlAttributes = new { @class = "form-control", required = "required" } })
-                                            @Html.ValidationMessageFor(model => model.CurrentAddress, "", new { @class = "text-danger" })
+                                            <p class="form-control">@Model.CurrentAddress</p>
                                         </div>
                                     </div>
 
@@ -184,19 +167,7 @@
                                             Loan Type <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6">
-                                            @Html.DropDownListFor(model => model.LoanType, new List<SelectListItem>
-                                            {
-                                            new SelectListItem{ Value = "Vehicle Loan", Text = "Vehicle Loan"},
-                                            new SelectListItem{ Value = "Personal Loan", Text = "Personal Loan"},
-                                            new SelectListItem{ Value = "Gold Loan", Text = "Gold Loan"}},
-                                            "Select Loan Type",
-                                            new
-                                                 {
-                                                @class = "form-control", // Add the Bootstrap form-control class
-                                                id = "LoanType",
-                                                required = "required"
-                                            }
-                                            )
+                                            <p class="form-control">@Model.LoanType</p>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -204,8 +175,7 @@
                                             Required Loan Amount <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6">
-                                            @Html.EditorFor(model => model.RequiredLoanAmount, new { htmlAttributes = new { @class = "form-control", id = "RequiredLoanAmount", required = "required" } })
-                                            @Html.ValidationMessageFor(model => model.RequiredLoanAmount, "", new { @class = "text-danger" })
+                                            <p class="form-control">@Model.RequiredLoanAmount</p>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -213,8 +183,7 @@
                                             Rate Of Interest <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6">
-                                            @Html.EditorFor(model => model.RateOfInterest, new { htmlAttributes = new { @class = "form-control", required = "required", @readonly = "readonly" } })
-                                            @Html.ValidationMessageFor(model => model.RateOfInterest, "", new { @class = "text-danger", id = "RateOfInterest" })
+                                            <p class="form-control">@Model.RateOfInterest</p>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -222,8 +191,7 @@
                                             Loan Tenure In Month <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6">
-                                            @Html.EditorFor(model => model.LoanTenureInMonth, new { htmlAttributes = new { @class = "form-control", id = "LoanTenureInMonth", required = "required" } })
-                                            @Html.ValidationMessageFor(model => model.LoanTenureInMonth, "", new { @class = "text-danger" })
+                                            <p class="form-control">@Model.LoanTenureInMonth</p>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -231,8 +199,7 @@
                                             Loan EMI <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6">
-                                            @Html.EditorFor(model => model.LoanEMI, new { htmlAttributes = new { @class = "form-control", required = "required", @readonly = "readonly" } })
-                                            @Html.ValidationMessageFor(model => model.LoanEMI, "", new { @class = "text-danger" })
+                                            <p class="form-control">@Model.LoanEMI</p>
                                         </div>
                                     </div>
 
@@ -246,12 +213,15 @@
                                             Upload Files <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6">
-                                            <ol id="listOfDoc"></ol>
-                                            <input type="file" name="file" id="uploadhere" class="file btn btn-small btn-primary" multiple required="required" style="display:none" />
-                                            <p class="btn btn-primary" type="button" onclick="$('#uploadhere').click()">Upload</p>
-                                            <p id="dl"><b>Uploaded Docs</b></p>
-                                            <ol id="fileList"></ol>
-
+                                            <ul class="list-group">
+                                                @foreach (var el in Model.FileDetails)
+                                                {
+                                                    <li class="list-group-item">
+                                                        <h6>@el.FileName</h6>
+                                                        @Html.ActionLink("Download", "Download", "ApplicationForm", new { p = el.Id + el.Extension, d = el.FileName }, new { @class = "title control-label col-md-2" })
+                                                    </li>
+                                                }
+                                            </ul>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -259,8 +229,21 @@
                                             Summary <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6">
-                                            @Html.TextAreaFor(model => model.Summary, new { htmlAttributes = new { @class = "form-control", required = "required" } })
-                                            @Html.ValidationMessageFor(model => model.Summary, "", new { @class = "text-danger" })
+                                            <p class="form-control">@Model.Summary</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">Gender<span class="required">*</span></label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div id="gender2" class="btn-group" data-toggle="buttons">
+                                                <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-secondary">
+                                                    @Html.RadioButtonFor(model => model.LoanStatus, "true", new { @class = "join-btn form-check-input", autocomplete = "off" })   &nbsp; Approved  &nbsp;
+                                                </label>
+                                                <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-secondary">
+                                                    @Html.RadioButtonFor(model => model.LoanStatus, "false", new { @class = "join-btn form-check-input", autocomplete = "off" }) Reject
+                                                </label>
+                                                @Html.ValidationMessageFor(model => model.LoanStatus, "", new { @class = "text-danger" })
+                                            </div>
                                         </div>
                                     </div>
 
@@ -405,5 +388,25 @@
             return emi;
         }
     });
+    @*$('.deleteItem').click(function (e) {
+           e.preventDefault();
+           var $ctrl = $(this);
+           if (confirm('Do you really want to delete this file?')) {
+               $.ajax({
+                   url: '@Url.Action("DeleteFile","ApplicationForm")',
+                   type: 'POST',
+                   data: { id: $(this).data('id') }
+               }).done(function (data) {
+                   if (data.Result == "OK") {
+                       $ctrl.closest('li').remove();
+                   }
+                   else if (data.Result.Message) {
+                       alert(data.Result.Message);
+                   }
+               }).fail(function () {
+                   alert("There is something wrong. Please try again.");
+               })
 
+           }
+       });*@
 </script>

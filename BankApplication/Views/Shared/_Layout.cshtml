@@ -7,10 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="images/favicon.ico" type="image/ico" />
-
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <title>Aarohi Fi Management</title>
 
     <!-- Bootstrap -->
+    <link href="cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <link href="~/Content/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="~/Content/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -18,6 +21,13 @@
     <link href="~/Content/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
     <link href="~/Content/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- Datatables -->
+
+    <link href="~/Content/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
     <!-- bootstrap-progressbar -->
     <link href="~/Content/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
@@ -74,6 +84,10 @@
                                     <a><i class="fa fa-edit"></i> Main <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="/ApplicationForm/Create">Apply For Loan</a></li>
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <li><a href="/ApplicationForm/Index">Loan Application Form's</a></li>
+ }
                                         @*<li><a href="form_advanced.html">Advanced Components</a></li>
                                             <li><a href="form_validation.html">Form Validation</a></li>
                                             <li><a href="form_wizards.html">Form Wizard</a></li>
@@ -208,7 +222,7 @@
                                         <img src="~/Content/Image/user.png" alt="">@User.Identity.Name
                                     </a>
                                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="javascript:;"> Profile</a>
+                                        <a class="dropdown-item" href="/Accounts/UserProfile"> Profile</a>
                                         <a class="dropdown-item" href="javascript:;">
                                             <span class="badge bg-red pull-right">50%</span>
                                             <span>Settings</span>
@@ -288,7 +302,7 @@
                             {
                                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                                       Accounts
+                                        Accounts
                                     </a>
                                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="/Accounts/Login"><i class="fa fa-sign-in pull-right"></i>User Log In</a>
@@ -310,7 +324,7 @@
             <!-- footer content -->
             <footer>
                 <div class="pull-right">
-                    Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+                    This site made by <i class="fa fa-heart"></i> Lukesh!
                 </div>
                 <div class="clearfix"></div>
             </footer>
@@ -357,6 +371,23 @@
     <script src="~/Content/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
     <!-- jQuery Smart Wizard -->
     <script src="~/Content/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
+    <!-- Datatables -->
+    <script src="~/Content/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="~/Content/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="~/Content/vendors/jszip/dist/jszip.min.js"></script>
+    <script src="~/Content/vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="~/Content/vendors/pdfmake/build/vfs_fonts.js"></script>
+
     <!-- Custom Theme Scripts -->
     <script src="~/Content/build/js/custom.min.js"></script>
 

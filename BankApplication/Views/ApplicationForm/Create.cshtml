@@ -4,6 +4,7 @@
     //Model.CustemerName = data.UserName;
 
 }
+
 <div class="">
     <div class="page-title">
         <div class="title_left">
@@ -184,13 +185,14 @@
                                             Loan Type <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6">
-                                            @Html.DropDownListFor(model => model.LoanType,new List<SelectListItem>
+                                            @Html.DropDownListFor(model => model.LoanType, new List<SelectListItem>
                                             {
                                             new SelectListItem{ Value = "Vehicle Loan", Text = "Vehicle Loan"},
                                             new SelectListItem{ Value = "Personal Loan", Text = "Personal Loan"},
                                             new SelectListItem{ Value = "Gold Loan", Text = "Gold Loan"}},
                                             "Select Loan Type",
-                                            new{
+                                            new
+                                                 {
                                                 @class = "form-control", // Add the Bootstrap form-control class
                                                 id = "LoanType",
                                                 required = "required"
@@ -230,7 +232,7 @@
                                             Loan EMI <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6">
-                                            @Html.EditorFor(model => model.LoanEMI, new { htmlAttributes = new { @class = "form-control", required = "required", @readonly="readonly"} })
+                                            @Html.EditorFor(model => model.LoanEMI, new { htmlAttributes = new { @class = "form-control", required = "required", @readonly = "readonly" } })
                                             @Html.ValidationMessageFor(model => model.LoanEMI, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
@@ -276,6 +278,7 @@
     </div>
 </div>
 <script>
+
     $(document).ready(function () {
         // Attach a click event handler to the "Log in" link/button
         $(".buttonFinish").on("click", function () {
@@ -346,12 +349,12 @@
                 docList = "PanCard Photo, Aadhar Card Photo";
             }
             $("#RateOfInterest").val(rate);
-            if (docList != "") {                
-            var docArray = docList.split(', ');
-            $.each(docArray, function (index, el) {
-                var listItem = $('<li>').text(el);
-                $('#listOfDoc').append(listItem);
-            });
+            if (docList != "") {
+                var docArray = docList.split(', ');
+                $.each(docArray, function (index, el) {
+                    var listItem = $('<li>').text(el);
+                    $('#listOfDoc').append(listItem);
+                });
             }
         }
     });

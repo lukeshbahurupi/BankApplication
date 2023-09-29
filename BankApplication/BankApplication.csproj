@@ -181,6 +181,7 @@
       <DependentUpon>ApplicationModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UsersRoleProvider.cs" />
+    <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -5047,6 +5048,8 @@
     <Content Include="Views\DocumentMappings\Static.cshtml" />
     <Content Include="Views\Shared\_Static.cshtml" />
     <Content Include="Views\Shared\_Apply.cshtml" />
+    <Content Include="Views\Accounts\UserProfile.cshtml" />
+    <Content Include="Views\ApplicationForm\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Upload\" />
