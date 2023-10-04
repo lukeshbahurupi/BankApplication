@@ -76,7 +76,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="RoleID" Type="int" Nullable="false" />
         </EntityType>
@@ -103,7 +103,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserRoles__RoleI__48CFD27E">
+        <Association Name="FK__UserRoles__RoleI__5DCAEF64">
           <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="1" />
           <End Role="UserRolesMapping" Type="Self.UserRolesMapping" Multiplicity="*" />
           <ReferentialConstraint>
@@ -115,7 +115,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserRoles__UserI__47DBAE45">
+        <Association Name="FK__UserRoles__UserI__5CD6CB2B">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="UserRolesMapping" Type="Self.UserRolesMapping" Multiplicity="*" />
           <ReferentialConstraint>
@@ -168,11 +168,11 @@
             <End Role="ApplicationForm" EntitySet="ApplicationForm" />
             <End Role="FileDetail" EntitySet="FileDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserRoles__RoleI__48CFD27E" Association="Self.FK__UserRoles__RoleI__48CFD27E">
+          <AssociationSet Name="FK__UserRoles__RoleI__5DCAEF64" Association="Self.FK__UserRoles__RoleI__5DCAEF64">
             <End Role="RoleMaster" EntitySet="RoleMaster" />
             <End Role="UserRolesMapping" EntitySet="UserRolesMapping" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserRoles__UserI__47DBAE45" Association="Self.FK__UserRoles__UserI__47DBAE45">
+          <AssociationSet Name="FK__UserRoles__UserI__5CD6CB2B" Association="Self.FK__UserRoles__UserI__5CD6CB2B">
             <End Role="Users" EntitySet="Users" />
             <End Role="UserRolesMapping" EntitySet="UserRolesMapping" />
           </AssociationSet>

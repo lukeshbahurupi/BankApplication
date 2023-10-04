@@ -115,9 +115,9 @@ namespace BankApplication.Controllers
                 {
                     User usr = _context.Users.FirstOrDefault(el => el.Email == model.Login.Email);
                     bool tokenvalid = false;
-
-                    string token = usr.UniqueId.ToString().Split('0')[0];
-                    if (token != null && token == "adminn") tokenvalid = true;
+                    if(usr != null) { string token = usr.UniqueId.ToString().Split('0')[0];
+                    
+                    if ( token == "adminn") tokenvalid = true;
                     bool isValidUser = _context.Users.Any(user => user.Email == model.Login.Email && user.UserPassword == model.Login.Password);
                     if (isValidUser && tokenvalid)
                     {
@@ -125,6 +125,7 @@ namespace BankApplication.Controllers
                         //TempData["Success"] = $"Welcome{User.Identity.Name}";
                         //TempData.Keep("Success");
                         return RedirectToAction("Index","Home");
+                    }
                     }
                 }
                 catch (Exception ex)
