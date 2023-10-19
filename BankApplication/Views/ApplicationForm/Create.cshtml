@@ -107,7 +107,7 @@
                                             Age <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6">
-                                            @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control", id = "Age", required = "required" } })
+                                            @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control", id = "Age", required = "required", @readonly="readonly" } })
                                             @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
                                         </div>
                                     </div>

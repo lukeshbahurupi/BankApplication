@@ -220,11 +220,14 @@
                                 </strong>
 
                                 <span class="float-right">
-                                    @Html.ActionLink("Download", "Download", "ApplicationForm", new { p = el.Id + el.Extension, d = el.FileName })
+                                    @*@Html.ActionLink("Download", "Download", "ApplicationForm", new { p = el.Id + el.Extension, d = el.FileName })*@
+                                    <a href="/ApplicationForm/Download?p=@(el.Id + el.Extension)&d=@el.FileName">Download</a>
+
                                 </span>
-                                
+
                             </li>
-                            }
+                        }
+                       
                         <li class="list-group-item text-center">
                             <p>
                                 <a href="/ApplicationForm/Edit/@Model.ApplicationID" class="text-bg-secondary">Edit</a>
@@ -235,7 +238,7 @@
                                 <a href="/ApplicationForm/index" class="text-bg-secondary">Back To List</a>
                             </p>
                         </li>
-                        </ul>                    
+                    </ul>                    
                 </div>
             </div>
         </div>

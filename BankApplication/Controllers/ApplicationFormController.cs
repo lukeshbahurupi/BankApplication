@@ -31,6 +31,7 @@ namespace BankApplication.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ApplicationForm applicationForm = db.ApplicationForms.Find(id);
+            
             if (applicationForm == null)
             {
                 return HttpNotFound();
